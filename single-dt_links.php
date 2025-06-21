@@ -46,6 +46,7 @@ if(have_posts()){
             $type = get_post_meta($post->ID, '_dool_type', true );
             $lang = get_post_meta($post->ID, '_dool_lang', true );
             $odio = get_post_meta($post->ID, '_dool_odio', true );
+            $vdio = get_post_meta($post->ID, '_dool_vdio', true );
             $size = get_post_meta($post->ID, '_dool_size', true );
             $qual = get_post_meta($post->ID, '_dool_quality', true );
             $domn = doo_compose_domainname($ourl);
