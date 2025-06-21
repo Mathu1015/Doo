@@ -852,6 +852,15 @@ CSF::createSection(DOO_OPTIONS,
                 )
             ),
             array(
+                'id'    => 'linksvdios',
+                'type'  => 'text',
+                'title' => __d('Set videocode'),
+                'subtitle'  => __d('Add comma separated values'),
+                'attributes' => array(
+                    'placeholder' => 'H.264, H.265'
+                )
+            ),
+            array(
                 'id'    => 'linksquality',
                 'type'  => 'text',
                 'title' => __d('Set resolutions quality'),
@@ -897,12 +906,13 @@ CSF::createSection(DOO_OPTIONS,
                     'qua' => __d('Quality'),
                     'lan' => __d('Language'),
                     'odo' => __d('Audiobit'),
+                    'vdo' => __d('Videocode'),
                     'siz' => __d('Size'),
                     'cli' => __d('Clicks'),
                     'add' => __d('Added'),
                     'use' => __d('User')
                 ),
-                'default' => array('qua','lan','odo','siz','cli','add','use')
+                'default' => array('qua','lan','odo','vdo','siz','cli','add','use')
             ),
             array(
                 'id'    => 'linkshoweditor',
