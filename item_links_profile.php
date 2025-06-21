@@ -20,6 +20,7 @@ $murl = get_post_meta($psid, '_dool_url', true);
 $type = get_post_meta($psid, '_dool_type', true);
 $lang = get_post_meta($psid, '_dool_lang', true);
 $odio = get_post_meta($psid, '_dool_odio', true);
+$vdio = get_post_meta($psid, '_dool_vdio', true);
 $qual = get_post_meta($psid, '_dool_quality', true);
 $viws = get_post_meta($psid, 'dt_views_count', true);
 $date = human_time_diff(get_the_time('U',$psid), current_time('timestamp',$psid));
@@ -37,6 +38,7 @@ $out .= "<td class='views'>{$viws}</td>";
 $out .= "<td class='views'><strong class='quality'>{$qual}</strong></td>";
 $out .= "<td class='views'>{$lang}</td>";
 $out .= "<td class='views'>{$odio}</td>";
+$out .= "<td class='views'>{$vdio}</td>";
 $out .= "<td class='views'>{$date}</td>";
 $out .= "</tr>";
 
