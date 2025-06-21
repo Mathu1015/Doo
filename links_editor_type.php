@@ -50,7 +50,17 @@
             </td>
             <td class="field">
                 <select name="_dool_odio" id="dool_odio">
-                    <?php foreach( $this->odios() as $odio ) { echo '<option '.selected( get_post_meta($post->ID, $this->metaodio, true), $odio, false).'>'.$odio.'</option>'; } ?>
+                    <?php foreach( $this->odios() as $odio ) { echo '<option '.selected( get_post_meta($post->ID, $this->metao, true), $odio, false).'>'.$odio.'</option>'; } ?>
+                </select>
+            </td>
+        </tr>
+        <tr id="dool_vdio_row">
+            <td class="label">
+                <label><?php _d('Audiobit'); ?></label>
+            </td>
+            <td class="field">
+                <select name="_dool_vdio" id="dool_vdio">
+                    <?php foreach( $this->vdios() as $vdio ) { echo '<option '.selected( get_post_meta($post->ID, $this->metavdio, true), $vdio, false).'>'.$vdio.'</option>'; } ?>
                 </select>
             </td>
         </tr>
