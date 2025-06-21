@@ -48,6 +48,7 @@
         						<th><?php _d('Quality'); ?></th>
         						<th><?php _d('Language'); ?></th>
         						<th><?php _d('Audiobit'); ?></th>
+        						<th><?php _d('Videocode'); ?></th>
         						<th><?php _d('File size'); ?></th>
         						<th></th>
         					</tr>
@@ -78,7 +79,7 @@
         							</select>
         						</td>
         						<td>
- <select name="vdio">
+        							<select name="vdio">
         							    <?php foreach( DooLinks::vdios() as $vdio) { echo "<option>{$vdio}</option>"; } ?>
         							</select>
         						</td>
