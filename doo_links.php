@@ -20,6 +20,7 @@ class DooLinks{
     public $metatype    = '_dool_type';
     public $metalang    = '_dool_lang';
     public $metaodio    = '_dool_odio';
+    public $metavdio    = '_dool_vdio';
     public $metasize    = '_dool_size';
     public $metaquality = '_dool_quality';
 
@@ -87,6 +88,14 @@ class DooLinks{
      */
     public static function odios(){
         return doo_multiexplode(array(',',', '), dooplay_get_option('linksodios','AAC 2.0 - 128kbps'));
+    }
+
+/**
+     * @since 2.1.8
+     * @version 1.0
+     */
+    public static function vdios(){
+        return doo_multiexplode(array(',',', '), dooplay_get_option('linksvdios','H.264, H.265'));
     }
 
 
@@ -244,6 +253,7 @@ class DooLinks{
             $typs = get_post_meta($psid, $this->metatype, true );
             $lags = get_post_meta($psid, $this->metalang, true );
             $odi = get_post_meta($psid, $this->metaodio, true );		
+            $vdi = get_post_meta($psid, $this->metavdio, true );		
             $qual = get_post_meta($psid, $this->metaquality, true );
             $size = get_post_meta($psid, $this->metasize, true );
             $post = get_post($psid);
@@ -276,6 +286,16 @@ class DooLinks{
             // Elements defined
             foreach( $this->odios() as $odio) {
                 $out .= '<option '.selected($odi, $odio, false).'>'.$odio.'</option>';
+            }
+            $out .= '</select></span>';
+            $out .= '<span><select id="doolinkeditor_vdio">';
+            // Get item not defined
+            if(!in_array($vdi, $this->vdios())){
+                $out .= '<option selected="selected">'.$odi.'</option>';
+            }
+            // Elements defined
+            foreach( $this->vdios() as $vdio) {
+                $out .= '<option '.selected($vdi, $vdio, false).'>'.$vdio.'</option>';
             }
             $out .= '</select></span>';
             $out .= '<span><select id="doolinkeditor_quality">';
@@ -326,6 +346,7 @@ class DooLinks{
             $ptid = doo_isset($_POST,'ptid');
             $lang = doo_isset($_POST,'lang');
             $odio = doo_isset($_POST,'odio');
+            $vdio = doo_isset($_POST,'vdio');
             $type = doo_isset($_POST,'type');
             $qual = doo_isset($_POST,'qual');
             $murl = doo_isset($_POST,'murl');
@@ -345,6 +366,7 @@ class DooLinks{
                 // Update Postmeta
                 if($lang) update_post_meta($ptid, $this->metalang, esc_attr($lang));
                 if($odio) update_post_meta($ptid, $this->metaodio, esc_attr($odio));
+                if($vdio) update_post_meta($ptid, $this->metavdio, esc_attr($vdio));
                 if($type) update_post_meta($ptid, $this->metatype, esc_attr($type));
                 if($qual) update_post_meta($ptid, $this->metaquality, esc_attr($qual));
                 if($murl) update_post_meta($ptid, $this->metaurl, esc_attr($murl));
@@ -367,6 +389,7 @@ class DooLinks{
             $murl = doo_isset($_POST,'url');
             $lags = doo_isset($_POST,'lang');
             $odi = doo_isset($_POST,'odio');
+            $vdi = doo_isset($_POST,'vdio');
             $typs = doo_isset($_POST,'type');
             $qual = doo_isset($_POST,'quality');
             $size = doo_isset($_POST,'size');
@@ -375,6 +398,7 @@ class DooLinks{
                 // update post meta
                 if($lags) update_post_meta($psid, $this->metalang, $lags);
                 if($odi) update_post_meta($psid, $this->metaodio, $odi);
+                if($vdi) update_post_meta($psid, $this->metavdio, $vdi);
                 if($typs) update_post_meta($psid, $this->metatype, $typs);
                 if($qual) update_post_meta($psid, $this->metaquality, $qual);
                 if($murl) update_post_meta($psid, $this->metaurl, $murl);
@@ -442,12 +466,14 @@ class DooLinks{
         $type = doo_isset($_POST,'_dool_type');
         $lang = doo_isset($_POST,'_dool_lang');
         $odio = doo_isset($_POST,'_dool_odio');
+        $vdio = doo_isset($_POST,'_dool_vdio');
         $murl = doo_isset($_POST,'_dool_url');
         $size = doo_isset($_POST,'_dool_size');
         $qual = doo_isset($_POST,'_dool_quality');
         // Update post meta
         if($lang) update_post_meta($post_id, $this->metalang, $lang);
         if($odio) update_post_meta($post_id, $this->metaodio, $odio);
+        if($vdio) update_post_meta($post_id, $this->metavdio, $vdio);
         if($type) update_post_meta($post_id, $this->metatype, $type);
         if($qual) update_post_meta($post_id, $this->metaquality, $qual);
         if($murl) update_post_meta($post_id, $this->metaurl, $murl); else delete_post_meta($post_id, $this->metaurl);
@@ -473,6 +499,7 @@ class DooLinks{
                         'url'     => $url,
                         'lang'    => doo_isset($_POST,'language'),
                         'odio'    => doo_isset($_POST,'audiobit'),
+                        'vdio'    => doo_isset($_POST,'videocode'),
                         'size'    => doo_isset($_POST,'size'),
                         'parent'  => doo_isset($_POST,'postid'),
                         'quality' => doo_isset($_POST,'quality'),
@@ -511,6 +538,7 @@ class DooLinks{
                     'parent'  => $ptid,
                     'lang'    => isset($data[$n]['lang']) ? $data[$n]['lang'] : false,
                     'odio'    => isset($data[$n]['odio']) ? $data[$n]['odio'] : false,
+                    'vdio'    => isset($data[$n]['vdio']) ? $data[$n]['vdio'] : false,
                     'size'    => isset($data[$n]['size']) ? $data[$n]['size'] : false,
                     'quality' => isset($data[$n]['quality']) ? $data[$n]['quality'] : false
                 );
@@ -539,6 +567,7 @@ class DooLinks{
             $url     = doo_isset($data,'url');
             $lang    = doo_isset($data,'lang');
             $odio    = doo_isset($data,'odio');
+            $vdio    = doo_isset($data,'vdio');
             $size    = doo_isset($data,'size');
             $type    = doo_isset($data,'type');
             $parent  = doo_isset($data,'parent');
@@ -563,6 +592,8 @@ class DooLinks{
                         add_post_meta($post_id, $this->metalang, sanitize_text_field($lang), true);
                     if($odio)
                         add_post_meta($post_id, $this->metaodio, sanitize_text_field($odio), true);
+                    if($vdio)
+                        add_post_meta($post_id, $this->metavdio, sanitize_text_field($vdio), true);
                     if($size)
                         add_post_meta($post_id, $this->metasize, sanitize_text_field($size), true);
                     if($type)
@@ -608,6 +639,7 @@ class DooLinks{
                     $type = get_post_meta($psid, '_dool_type', true);
                     $lang = get_post_meta($psid, '_dool_lang', true);
                     $odio = get_post_meta($psid, '_dool_odio', true);
+                    $vdio = get_post_meta($psid, '_dool_vdio', true);
                     $size = get_post_meta($psid, '_dool_size', true);
                     $murl = get_post_meta($psid, '_dool_url', true);
                     $qual = get_post_meta($psid, '_dool_quality', true);
@@ -629,6 +661,7 @@ class DooLinks{
                         if(doo_is_true('linksrowshow','qua') == true) $out .= "<td><strong class='quality'>{$qual}</strong></td>";
                         if(doo_is_true('linksrowshow','lan') == true) $out .= "<td>{$lang}</td>";
                         if(doo_is_true('linksrowshow','odo') == true) $out .= "<td>{$odio}</td>";
+                        if(doo_is_true('linksrowshow','vdo') == true) $out .= "<td>{$vdio}</td>";
                         if(doo_is_true('linksrowshow','siz') == true) $out .= "<td>{$size}</td>";
                         if(doo_is_true('linksrowshow','cli') == true) $out .= "<td>{$clik}</td>";
                         if(doo_is_true('linksrowshow','add') == true) $out .= "<td>{$date}</td>";
@@ -668,6 +701,7 @@ class DooLinks{
                 $url     = get_post_meta($id, $this->metaurl, true);
                 $lang    = get_post_meta($id, $this->metalang, true);
                 $odio    = get_post_meta($id, $this->metaodio, true);
+                $vdio    = get_post_meta($id, $this->metavdio, true);
                 $quality = get_post_meta($id, $this->metaquality, true);
                 $size    = get_post_meta($id, $this->metasize, true);
                 $size    = ($size) ? $size : '----';
@@ -686,6 +720,7 @@ class DooLinks{
                 $out .= "<td><a href='{$url}' target='_blank'>{$domain}</a></td>";
                 $out .= "<td>{$lang}</td>";
                 $out .= "<td>{$odio}</td>";
+                $out .= "<td>{$vdio}</td>";
                 $out .= "<td><strong>{$quality}</strong></td>";
                 $out .= "<td>{$size}</td>";
                 $out .= "<td>{$clicks}</td>";
@@ -711,6 +746,7 @@ class DooLinks{
         $murl = get_post_meta($post_id, $this->metaurl, true);
         $lang = get_post_meta($post_id, $this->metalang, true);
         $odio = get_post_meta($post_id, $this->metaodio, true);
+        $vdio = get_post_meta($post_id, $this->metavdio, true);
         $qual = get_post_meta($post_id, $this->metaquality, true);
         $size = get_post_meta($post_id, $this->metasize, true);
         $size = ($size) ? $size : '----';
@@ -728,6 +764,7 @@ class DooLinks{
         $out .= "<td><a href='{$murl}' target='_blank'>{$dmin}</a></td>";
         $out .= "<td>{$lang}</td>";
         $out .= "<td>{$odio}</td>";
+        $out .= "<td>{$vdio}</td>";
         $out .= "<td><strong>{$qual}</strong></td>";
         $out .= "<td>{$size}</td>";
         $out .= "<td>{$clic}</td>";
@@ -748,6 +785,7 @@ class DooLinks{
 		$defaults['url']     = __d('Server');
 		$defaults['lang']    = __d('Language');
 	        $defaults['odio']    = __d('Audiobit');
+	        $defaults['vdio']    = __d('Videocode');
 	    $defaults['quality'] = __d('Quality');
 		$defaults['clicks']  = __d('Clicks');
 	    return $defaults;
@@ -768,6 +806,7 @@ class DooLinks{
         $link_url     = get_post_meta( $post_id, $this->metaurl, true );
         $link_lang    = get_post_meta( $post_id, $this->metalang, true );
         $link_odio    = get_post_meta( $post_id, $this->metaodio, true );
+        $link_vdio    = get_post_meta( $post_id, $this->metavdio, true );
         $link_quality = get_post_meta( $post_id, $this->metaquality, true );
         $link_views   = get_post_meta( $post_id, 'dt_views_count', true );
         // Domain link data
@@ -788,6 +827,9 @@ class DooLinks{
                 break;
             case 'odio':
                 $out = "<span class='dashicons dashicons-translation doo_links_icon'></span> {$link_odio}";
+                break;
+            case 'vdio':
+                $out = "<span class='dashicons dashicons-translation doo_links_icon'></span> {$link_vdio}";
                 break;
             case 'quality':
                 $out = "<strong>{$link_quality}</strong>";
@@ -918,6 +960,7 @@ class DooLinks{
         $wpdb->query("UPDATE $wpdb->postmeta SET meta_key = '{$this->metaurl}' WHERE meta_key = 'links_url'");
         $wpdb->query("UPDATE $wpdb->postmeta SET meta_key = '{$this->metalang}' WHERE meta_key = 'links_idioma'");
         $wpdb->query("UPDATE $wpdb->postmeta SET meta_key = '{$this->metaodio}' WHERE meta_key = 'links_idiomas'");
+        $wpdb->query("UPDATE $wpdb->postmeta SET meta_key = '{$this->metavdio}' WHERE meta_key = 'links_idiomai'");
         $wpdb->query("UPDATE $wpdb->postmeta SET meta_key = '{$this->metaquality}' WHERE meta_key = 'links_quality'");
         $wpdb->query("UPDATE $wpdb->postmeta SET meta_key = '{$this->metasize}' WHERE meta_key = 'dt_filesize'");
     }
