@@ -78,7 +78,12 @@
         							</select>
         						</td>
         						<td>
-        							<input name="size" type="text" class="size">
+ <select name="vdio">
+        							    <?php foreach( DooLinks::vdios() as $vdio) { echo "<option>{$vdio}</option>"; } ?>
+        							</select>
+        						</td>
+        						<td>
+       							<input name="size" type="text" class="size">
         						</td>
         						<td>
         							<a data-repeater-delete class="remove_row">X</a>
