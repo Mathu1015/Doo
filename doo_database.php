@@ -410,7 +410,7 @@ class DooDatabase{
         // Delete options
         $options = array(
             'dt_main_slider_items','dt_clear_database_time','dt_main_slider_speed','dt_main_slider_order','dt_main_slider_autoplay','dt_main_slider_radom',
-            'dt_main_slider','dt_shorcode_home','dt_api_release_date','dt_api_upload_poster','dt_api_genres','dt_api_language','dt_api_audiobit',
+            'dt_main_slider','dt_shorcode_home','dt_api_release_date','dt_api_upload_poster','dt_api_genres','dt_api_language','dt_api_audiobit','dt_api_videocode',
             'dt_api_key','dt_activate_api','_site_register_in_dbmvs','dt_register_note','wp_app_dbmkey','minify_html_comments',
             'minify_html_active','dt_cleardb_date','dt_jw_skinbackground','dt_jw_skininactive','dt_jw_skinname','dt_jwplayer_page_gdrive',
             'dt_grprivate_key','dt_grpublic_key','dt_player_ads_300','dt_player_ads_time','dt_player_ads_hide_clic','dt_player_ads',
@@ -427,7 +427,7 @@ class DooDatabase{
             'dt_slider_radom','dt_mm_title','dt_mm_number_items','dt_mm_activate_slider','dt_mt_title','dt_mt_number_items',
             'dt_mt_activate_slider','dt_ms_title','dt_ms_number_items','dt_me_title','dt_me_number_items','dt_topimdb_layout',
             'dt_topimdb_title','dt_topimdb_number_items','dt_activate_post_links','dt_languages_post_link','dt_quality_post_link','dt_ountdown_link_redirect',
-            'dt_links_table_size','dt_links_table_added','dt_links_table_quality','dt_links_table_language','dt_links_table_audiobit','dt_links_table_user','dt_welcome_mail_user',
+            'dt_links_table_size','dt_links_table_added','dt_links_table_quality','dt_links_table_language','dt_links_table_audiobit','dt_links_table_videocode','dt_links_table_user','dt_welcome_mail_user',
             'dt_site_titles','dt_alt_name','dt_main_keywords','dt_metadescription','dt_veri_google','dt_veri_alexa',
             'dt_veri_bing','dt_veri_yandex','ads_spot_home','ads_spot_300','ads_spot_468','ads_spot_single','ads_ss_4','dt_redirect_post_links',
             'dt_menu_framework_secion','dt_vplayer_autoplay_youtube','dt_vplayer_autoplay_jwplayer','dt_vplayer_autoplay','dt_remove_ver','dt_minify_html',
