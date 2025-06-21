@@ -627,6 +627,7 @@ class DooLinks{
                 if(doo_is_true('linksrowshow','qua') == true) $out .= "<th>".__d('Quality')."</th>";
                 if(doo_is_true('linksrowshow','lan') == true) $out .= "<th>".__d('Language')."</th>";
                 if(doo_is_true('linksrowshow','odo') == true) $out .= "<th>".__d('Audiobit')."</th>";
+                if(doo_is_true('linksrowshow','vdo') == true) $out .= "<th>".__d('Videocode')."</th>";
                 if(doo_is_true('linksrowshow','siz') == true) $out .= "<th>".__d('Size')."</th>";
                 if(doo_is_true('linksrowshow','cli') == true) $out .= "<th>".__d('Clicks')."</th>";
                 if(doo_is_true('linksrowshow','add') == true) $out .= "<th>".__d('Added')."</th>";
