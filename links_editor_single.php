@@ -29,6 +29,11 @@
             </select>
         </fieldset>
         <fieldset>
+            <select name="vdio">
+            <?php foreach( $this->vdios() as $vdio ) { echo '<option '.selected( get_post_meta($post_id, '_dool_vdio', true), $vdio, false).'>'.$vdio.'</option>'; } ?>
+            </select>
+        </fieldset>
+        <fieldset>
             <select name="qual">
             <?php foreach( $this->resolutions() as $resolution ) { echo '<option '.selected( get_post_meta($post_id, '_dool_quality', true), $resolution, false).'>'.$resolution.'</option>'; } ?>
             </select>
