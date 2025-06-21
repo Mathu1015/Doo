@@ -20,6 +20,11 @@
                             </select>
                         </td>
                         <td>
+                            <select id='dooplay_lfield_vdio' name='dooplay_lfield_vdio'>
+                                <?php foreach( $this->vdios() as $type) { echo "<option>{$type}</option>"; } ?>
+                            </select>
+                        </td>
+                        <td>
                             <select id='dooplay_lfield_qual' name='dooplay_lfield_qual'>
                                 <?php foreach( $this->resolutions() as $type) { echo "<option>{$type}</option>"; } ?>
                             </select>
